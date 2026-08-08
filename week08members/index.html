@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week08 POSSE課題　メンバー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50 flex justify-center items-center">
+
+    <div class="m-4">
+        <h1 class="font-bold text-xl text-amber-900 mt-4">チームメンバー</h1>
+        <button id="sortBtn" class="rounded px-4 py-3 bg-green-900 text-white mt-3 hover:bg-green-700">役割順</button>
+        <div id="memberCards" class="grid grid-cols-1 gap-4 md:grid-cols-3"></div>
+    </div>
+
+    <script>
+        const members =[
+            { name:"岡田翔", years:"9", personality:"チャレンジ精神がある"},
+            { name:"緑川晶子", years:"2", personality:"協調性がある"},
+            { name:"市川信也", years:"8", personality:"心が広い"},
+            { name:"相場秀夫", years:"19", personality:"石橋を叩いて渡る"},
+            { name:"池田紬", years:"1", personality:"発送が豊か"},
+            { name:"三浦美緒", years:"3", personality:"責任感が強い"},
+            { name:"大塚佑真", years:"11", personality:"決断力がある"},
+        ];
+
+        const sortBtn = document.querySelector("#sortBtn")
+        const memberCards = document.querySelector("#memberCards")
+
+        const renderMembers = (List) => {
+            memberCards.innerHTML = "";
+
+            List.forEach((member) => {
+                const card = document.createElement("div");
+                card.className = "bg-amber-100 rounded-lg shadow p-4";
+
+                card.innerHTML = `
+                    <h2 class="text-lg font-bold text-orange-500">${member.name}</h2>
+                    <p class="text-lg text-orange-500">${member.years}年目</p>
+                    <p class="text-lg text-orange-500">${member.personality}</p>
+                `;
+                memberCards.appendChild(card);
+            });
+        };
+
+        renderMembers(members);
+        
+        sortBtn.addEventListener("click", () => {
+            const sortedMembers = members.slice().sort((a,b) => {
+                return a.years.localeCompare(b.years,"number");
+            });
+
+        renderMembers(sortedMembers);
+        });
+
+    </script>
+</body>
+
+</html>

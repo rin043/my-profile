@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week09 ミニドリル 問題3｜参加者登録リスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center" >
+    <div class="w-full max-w-sm rounded-xl border border-slate-200 bg-white shadow-sm p-4">
+        <h1 class="text-xl font-bold text-slate-900">ユーザー登録フォーム</h1>
+        <p class="mb-6 mt-1 text-sm text-slate-600">入力期限は明日までです。</p>
+
+        <form id="loginForm" class="space-y-4">
+            <input type="text" id="username" placeholder="ユーザー名"
+            class="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-orange-400">
+
+            <input type="password" id="password" placeholder="パスワード(8文字以上)"
+            class="w-full rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-orange-400">
+
+            <input type="checkbox" id="checkbox" placeholder="利用規約にチェックを入れてください"
+            class="rounded border border-slate-300 px-3 py-2 focus:outline-none focus:ring-orange-400">
+            <label for="checkbox" class="text-sm text-slate-700">利用規約に同意する</label>
+
+            <p id="result" class="text-sm font-medium"></p>
+
+            <button type="submit" class="w-full rounded bg-blue-600 py-2 font-bold text-white hover:bg-blue-700">
+                ログイン
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const result = document.getElementById("result");
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const agree = document.getElementById("checkbox").checked;
+
+        if (username === "" ){
+            result.textContent = "名前を入力してください";
+            result.className = "text-sm font-medium text-red-500";
+            return;
+        }
+
+        if(password.length < 8){
+            result.textContent = "パスワードを８文字以上入力してください";
+            result.className = "text-sm font-medium text-red-500";
+            return;
+        }
+
+        if(!agree){
+            result.textContent = "利用規約同意を押してください";
+            result.className = "text-sm font-medium text-red-500";
+            return;
+        }
+
+        result.textContent = `登録完了！　ようこそ、${username}さん!`;
+        result.className = "text-sm font-medium text-green-600";
+
+        });
+    </script>
+</body>
+</html>

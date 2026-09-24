@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week06 Posse課題  BMI計算</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="bg-gray-300">
+        <div class="min-h-screen mx-auto mt-10 flex flex-col items-center justify-center bg-white rounded-lg shadow-md bg-white">
+
+            <div class="flex flex-col m-4">
+                <label for="height">身長(cm)</label>
+                <input type="number" id="height" min="50" step="0.1"
+                class="rounded border border-slate-400 border-2 px-3 focus:outline-none focus:border-blue-500">
+            </div>
+
+            <div class="flex flex-col m-4">
+                <label for="weight">体重(kg)</label>
+                <input type="number" id="weight" min="10" step="0.1"
+                class="rounded border border-slate-400 border-2 px-3 focus:outline-none focus:border-blue-500">
+            </div>
+
+            <button type="button" id="calculate-btn"
+            class="bg-amber-700 rounded-lg shadow-md p-2 m-6 hover:bg-amber-800 transition">計算する</button>
+
+            <p id="result" class="font-bold text-lg text-pink-900"></p>
+
+        </div>
+
+    <script>
+        const heightInput = document.querySelector("#height");
+        const weightInput = document.querySelector("#weight");
+        const result = document.querySelector("#result");
+
+        document.querySelector("#calculate-btn").addEventListener("click",() => {
+            const height = Number(heightInput.value);
+            const weight = Number(weightInput.value);
+            
+            if (height <= 50 || weight <= 10){
+                result.textContent = "入力し直してください。実在しない身長・体重の人間です。";
+                return;
+            }
+            
+            const heightM = height / 100
+            const bmi = weight / heightM ** 2 
+
+            let Judgement = "";
+            if (bmi < 18.5){
+                Judgement = "やせ型";
+            }
+            else if (bmi < 25){
+                Judgement = "普通体重"
+            }
+
+            else {
+                Judgement = "肥満"
+            }
+
+            result.textContent = `BMIは${bmi.toFixed(1)}です。判定：${Judgement}`;
+        });
+
+    </script>    
+
+    </body>
+</html>

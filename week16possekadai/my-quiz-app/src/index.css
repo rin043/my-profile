@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+:root {
+  font-family: 'Avenir Next', 'Yu Gothic UI', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  color: #21372b;
+  background: #f3f8f2;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+.quiz-background {
+  background-color: #f3f8f2;
+  background-image: radial-gradient(#c7d8cc 0.7px, transparent 0.7px);
+  background-position: -8px -8px;
+  background-size: 22px 22px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
